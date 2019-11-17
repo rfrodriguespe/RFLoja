@@ -31,7 +31,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -85,12 +84,38 @@ public class FabricanteController implements FabricanteDAO {
 
     @Override
     public boolean updateFabricante(Fabricante fabricante) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = ConnectionUtil.getConnection();
+        PreparedStatement stmt = null;
+        String sql = "UPDATE `fabricante` SET `fabricante`=?,`obs`=? WHERE cod=?";
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, fabricante.getFabricante());
+            stmt.setString(2, fabricante.getObs());
+            stmt.setInt(3, fabricante.getCod());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        } finally {
+            ConnectionUtil.closeConnection(conn, stmt);
+        }
     }
 
     @Override
     public boolean deleteFabricante(Fabricante fabricante) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = ConnectionUtil.getConnection();
+        PreparedStatement stmt = null;
+        String sql = "DELETE from usuarios WHERE cod=?";
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, fabricante.getCod());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        } finally {
+            ConnectionUtil.closeConnection(conn, stmt);
+        }
     }
 
 }
