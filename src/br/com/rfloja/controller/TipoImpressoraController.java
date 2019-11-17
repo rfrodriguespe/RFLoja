@@ -23,8 +23,8 @@
  */
 package br.com.rfloja.controller;
 
-import br.com.rfloja.interfaces.FabricanteDAO;
-import br.com.rfloja.model.Fabricante;
+import br.com.rfloja.interfaces.TipoImpressoraDAO;
+import br.com.rfloja.model.TipoImpressora;
 import br.com.rfloja.util.ConnectionUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,20 +37,19 @@ import javax.swing.JOptionPane;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class FabricanteController implements FabricanteDAO {
+public class TipoImpressoraController implements TipoImpressoraDAO {
 
     @Override
-    public boolean createFabricante(Fabricante fabricante) {
+    public boolean createTipoImpressora(TipoImpressora tipoImpressora) {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO fabricante (fabricante, obs) VALUES (?, ?);";
+        String sql = "INSERT INTO tipoImpressora (tipo, obs) VALUES (?, ?);";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, fabricante.getFabricante());
-            stmt.setString(2, fabricante.getObs());
+            stmt.setString(1, tipoImpressora.getTipo());
+            stmt.setString(2, tipoImpressora.getObs());
             stmt.executeUpdate();
             return true;
-
         } catch (SQLException ex) {
             return false;
         } finally {
@@ -59,39 +58,39 @@ public class FabricanteController implements FabricanteDAO {
     }
 
     @Override
-    public ArrayList<Fabricante> readFabricante() {
+    public ArrayList<TipoImpressora> readTipoImpressora() {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Fabricante> listaFabricante = new ArrayList<>();
+        ArrayList<TipoImpressora> listaTipoImpressora = new ArrayList<>();
         try {
-            stmt = conn.prepareStatement("SELECT * FROM fabricante");
+            stmt = conn.prepareStatement("SELECT * FROM tipoImpressora");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Fabricante fabricante = new Fabricante();
-                fabricante.setCod(rs.getInt("cod"));
-                fabricante.setFabricante(rs.getString("fabricante"));
-                fabricante.setObs(rs.getString("obs"));
-                listaFabricante.add(fabricante);
+                TipoImpressora tipoImressora = new TipoImpressora();
+                tipoImressora.setCod(rs.getInt("cod"));
+                tipoImressora.setTipo(rs.getString("tipo"));
+                tipoImressora.setObs(rs.getString("obs"));
+                listaTipoImpressora.add(tipoImressora);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao Consultar os dados" + ex);
         } finally {
             ConnectionUtil.closeConnection(conn, stmt, rs);
         }
-        return listaFabricante;
+        return listaTipoImpressora;
     }
 
     @Override
-    public boolean updateFabricante(Fabricante fabricante) {
+    public boolean updateTipoImpressora(TipoImpressora tipoImpressora) {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "UPDATE `fabricante` SET `fabricante`=?,`obs`=? WHERE cod=?";
+        String sql = "UPDATE `tipoImpressora` SET `tipo`=?,`obs`=? WHERE cod=?";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, fabricante.getFabricante());
-            stmt.setString(2, fabricante.getObs());
-            stmt.setInt(3, fabricante.getCod());
+            stmt.setString(1, tipoImpressora.getTipo());
+            stmt.setString(2, tipoImpressora.getObs());
+            stmt.setInt(3, tipoImpressora.getCod());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -102,13 +101,13 @@ public class FabricanteController implements FabricanteDAO {
     }
 
     @Override
-    public boolean deleteFabricante(Fabricante fabricante) {
+    public boolean deleteTipoImpressora(TipoImpressora tipoImpressora) {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "DELETE from fabricante WHERE cod=?";
+        String sql = "DELETE from tipoImpressora WHERE cod=?";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, fabricante.getCod());
+            stmt.setInt(1, tipoImpressora.getCod());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {

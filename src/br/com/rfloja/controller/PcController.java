@@ -23,8 +23,8 @@
  */
 package br.com.rfloja.controller;
 
-import br.com.rfloja.interfaces.FabricanteDAO;
-import br.com.rfloja.model.Fabricante;
+import br.com.rfloja.interfaces.PcDAO;
+import br.com.rfloja.model.Pc;
 import br.com.rfloja.util.ConnectionUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,17 +37,21 @@ import javax.swing.JOptionPane;
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public class FabricanteController implements FabricanteDAO {
+public class PcController implements PcDAO {
 
     @Override
-    public boolean createFabricante(Fabricante fabricante) {
+    public boolean createPc(Pc pc) {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO fabricante (fabricante, obs) VALUES (?, ?);";
+        String sql = "INSERT INTO pc (modelo, velocidadeGhz, tamanhoRAM, tamanhoHD, preço, cod_fabricante) VALUES (?, ?, ?, ?, ?, ?);";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, fabricante.getFabricante());
-            stmt.setString(2, fabricante.getObs());
+            stmt.setString(1, pc.getModelo());
+            stmt.setFloat(2, pc.getVelocidadeGhz());
+            stmt.setInt(3, pc.getTamanhoRAM());
+            stmt.setInt(4, pc.getTamanhoHD());
+            stmt.setInt(5, pc.getPreco());
+            stmt.setInt(6, pc.getCodFabricante());
             stmt.executeUpdate();
             return true;
 
@@ -59,39 +63,47 @@ public class FabricanteController implements FabricanteDAO {
     }
 
     @Override
-    public ArrayList<Fabricante> readFabricante() {
+    public ArrayList<Pc> readPc() {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Fabricante> listaFabricante = new ArrayList<>();
+        ArrayList<Pc> listaPc = new ArrayList<>();
         try {
-            stmt = conn.prepareStatement("SELECT * FROM fabricante");
+            stmt = conn.prepareStatement("SELECT * FROM pc");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Fabricante fabricante = new Fabricante();
-                fabricante.setCod(rs.getInt("cod"));
-                fabricante.setFabricante(rs.getString("fabricante"));
-                fabricante.setObs(rs.getString("obs"));
-                listaFabricante.add(fabricante);
+                Pc pc = new Pc();
+                pc.setCod(rs.getInt("cod"));
+                pc.setModelo(rs.getString("modelo"));
+                pc.setVelocidadeGhz(rs.getFloat("velocidadeGhz"));
+                pc.setTamanhoRAM(rs.getInt("tamanhoRAM"));
+                pc.setTamanhoHD(rs.getInt("tamanhoHD"));
+                pc.setPreco(rs.getInt("preço"));
+                pc.setCodFabricante(rs.getInt("cod_fabricante"));
+                listaPc.add(pc);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao Consultar os dados" + ex);
         } finally {
             ConnectionUtil.closeConnection(conn, stmt, rs);
         }
-        return listaFabricante;
+        return listaPc;
     }
 
     @Override
-    public boolean updateFabricante(Fabricante fabricante) {
+    public boolean updatePc(Pc pc) {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "UPDATE `fabricante` SET `fabricante`=?,`obs`=? WHERE cod=?";
+        String sql = "UPDATE `pc` SET `modelo`=?,`velocidadeGhz`=?, `tamanhoRAM`=?, `tamanhoHD`=?, `preço`=?, `cod_fabricante`=? WHERE cod=?";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, fabricante.getFabricante());
-            stmt.setString(2, fabricante.getObs());
-            stmt.setInt(3, fabricante.getCod());
+            stmt.setString(1, pc.getModelo());
+            stmt.setFloat(2, pc.getVelocidadeGhz());
+            stmt.setInt(3, pc.getTamanhoRAM());
+            stmt.setInt(4, pc.getTamanhoHD());
+            stmt.setInt(5, pc.getPreco());
+            stmt.setInt(6, pc.getCodFabricante());
+            stmt.setInt(7, pc.getCod());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -102,13 +114,13 @@ public class FabricanteController implements FabricanteDAO {
     }
 
     @Override
-    public boolean deleteFabricante(Fabricante fabricante) {
+    public boolean deletePc(Pc pc) {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "DELETE from fabricante WHERE cod=?";
+        String sql = "DELETE from pc WHERE cod=?";
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, fabricante.getCod());
+            stmt.setInt(1, pc.getCod());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
