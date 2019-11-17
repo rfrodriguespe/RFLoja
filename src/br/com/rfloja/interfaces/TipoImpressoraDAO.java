@@ -32,7 +32,7 @@ import java.util.List;
  */
 public interface TipoImpressoraDAO {
 
-    public boolean createTipoImpressora(List<TipoImpressora> listaTipoImpressora);
+    public boolean createTipoImpressora(TipoImpressora tipoImpressora);
 
     public List<TipoImpressora> readTipoImpressora();
 

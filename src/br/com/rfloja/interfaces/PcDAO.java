@@ -32,7 +32,7 @@ import java.util.List;
  */
 public interface PcDAO {
 
-    public boolean createPc(List<Pc> listaPc);
+    public boolean createPc(Pc pc);
 
     public List<Pc> readPc();
 

@@ -21,23 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.com.rfloja.interfaces;
+package br.com.rfloja.teste;
 
-import br.com.rfloja.model.Impressora;
-import java.util.List;
+import br.com.rfloja.controller.FabricanteController;
+import br.com.rfloja.model.Fabricante;
+import java.util.ArrayList;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues <https://github.com/rfrodriguespe>
  */
-public interface ImpressoraDAO {
-
-    public boolean createImpressora(Impressora impressora);
-
-    public List<Impressora> readImpressora();
-
-    public boolean updateImpressora(Impressora impressora);
-
-    public boolean deleteImpressora(Impressora impressora);
-
+public class TesteBD {
+    
+    public static void leFabricantes (){
+        FabricanteController fabCtrl = new FabricanteController();
+        ArrayList<Fabricante> lista;
+        lista = fabCtrl.readFabricante();
+        
+        System.out.println("Fabricantes");
+        for (Fabricante fabricante : lista) {
+            System.out.println(fabricante.toString());
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+        
+        //leFabricantes();
+        
+//        Fabricante fab = new Fabricante();
+//        
+//        fab.setFabricante("Samsung");
+//        fab.setObs("Produtos Variados");
+//        
+//        FabricanteController fabCtrl = new FabricanteController();
+//        
+//        fabCtrl.createFabricante(fab);
+        
+        leFabricantes();
+    }
+    
 }

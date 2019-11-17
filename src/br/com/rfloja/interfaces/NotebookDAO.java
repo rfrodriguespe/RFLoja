@@ -32,7 +32,7 @@ import java.util.List;
  */
 public interface NotebookDAO {
 
-    public boolean createNotebook(List<Notebook> listaNotebook);
+    public boolean createNotebook(Notebook notebook);
 
     public List<Notebook> readNotebook();
 

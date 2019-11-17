@@ -24,7 +24,7 @@
 package br.com.rfloja.interfaces;
 
 import br.com.rfloja.model.Fabricante;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,9 +32,9 @@ import java.util.List;
  */
 public interface FabricanteDAO {
 
-    public boolean createFabricante(List<Fabricante> listaFabricante);
+    public boolean createFabricante(Fabricante fabricante);
 
-    public List<Fabricante> readFabricante();
+    public ArrayList<Fabricante> readFabricante();
 
     public boolean updateFabricante(Fabricante fabricante);
 

@@ -59,6 +59,13 @@ public class Fabricante {
     public void setObs(String obs) {
         this.obs = obs;
     }
+
+    @Override
+    public String toString() {
+        return "Cod: " + getCod() +
+                " Fabricante: " + getFabricante() +
+                " Obs: " + getObs();
+    }
     
     
     

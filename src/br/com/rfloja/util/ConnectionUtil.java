@@ -16,7 +16,7 @@ public class ConnectionUtil {
 	public static Connection getConnection() {
 		Properties properties = new Properties();
 		try {
-			ResourceBundle resources = ResourceBundle.getBundle("br.com.rfrodrigues.util.DatabaseProperties");
+			ResourceBundle resources = ResourceBundle.getBundle("br.com.rfloja.util.DatabaseProperties");
 			for (@SuppressWarnings("rawtypes")
 			Enumeration keys = resources.getKeys(); keys.hasMoreElements();) {
 				final String key = (String) keys.nextElement();
