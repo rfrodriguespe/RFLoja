@@ -105,7 +105,7 @@ public class FabricanteController implements FabricanteDAO {
     public boolean deleteFabricante(Fabricante fabricante) {
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement stmt = null;
-        String sql = "DELETE from usuarios WHERE cod=?";
+        String sql = "DELETE from fabricante WHERE cod=?";
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, fabricante.getCod());

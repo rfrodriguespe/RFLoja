@@ -5,7 +5,6 @@ package br.com.rfloja.view;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 // Import das classes para trabalhar com o preenchimento do endereço a partir do CEP
 import br.com.rfloja.controller.FabricanteController;
 import br.com.rfloja.model.Fabricante;
@@ -374,21 +373,20 @@ public class FabricanteView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-//        if (jTableFabricante.getSelectedRow() != -1) {
-//            Fabricante fabricante = new Fabricante();
-//            fabricante.setCod(Integer.parseInt(jTextFieldId.getText()));
-//            fabricante.setFabricante(jTextFieldCPF.getText());
-//            fabricante.setObs(jTextFieldNome.getText());
-//            FabricanteController fabCtrl = new FabricanteController();
-//            if (fabricante.removeClientesPF(clientePf)) {
-//                JOptionPane.showMessageDialog(this, "Cliente Excluído com sucesso");
-//                preencheTabela();
-//                limparCampos();
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Selecione um Cliente para excluir");
-//        }
-
+        if (jTableFabricante.getSelectedRow() != -1) {
+            FabricanteController fabCtrl = new FabricanteController();
+            Fabricante fabricante = new Fabricante();
+            fabricante.setCod(Integer.parseInt(jTextFieldCod.getText()));
+            fabricante.setFabricante(jTextFieldFabricante.getText());
+            fabricante.setObs(jTextFieldObs.getText());
+            if (fabCtrl.deleteFabricante(fabricante)) {
+                JOptionPane.showMessageDialog(this, "Fabricante deletado com sucesso");
+                preencheTabela();
+                limparCampos();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um Fabricante para deletar");
+        }
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -424,26 +422,20 @@ public class FabricanteView extends javax.swing.JInternalFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-//        if (jTableFabricante.getSelectedRow() != -1) {
-//            ClientesPFModel clientePf = new ClientesPFModel();
-//            clientePf.setId(Integer.parseInt(jTextFieldId.getText()));
-//            clientePf.setCPF(jTextFieldCPF.getText());
-//            clientePf.setNome(jTextFieldNome.getText());
-//            clientePf.setEmail(jTextFieldEmail.getText());
-//            clientePf.setTelefone(jFormattedTextTelefone.getText());
-//            EnderecoModel end = new EnderecoModel(jFormattedTextFieldCep.getText().replaceAll("-", ""), jTextFieldLogradouro.getText(),
-//                    jTextFieldNumero.getText(), jTextFieldComplemento.getText(), jTextFieldBairro.getText(),
-//                    jTextFieldCidade.getText(), jTextFieldEstado.getText());
-//            clientePf.setEndereco(end);
-//            ClientesPFController cliPfCtrl = new ClientesPFController();
-//            if (cliPfCtrl.alteraClientesPF(clientePf)) {
-//                JOptionPane.showMessageDialog(this, "Cliente Alterado com sucesso");
-//                preencheTabela();
-//                limparCampos();
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Selecione um Cliente para alterar");
-//        }
+        if (jTableFabricante.getSelectedRow() != -1) {
+            FabricanteController fabCtrl = new FabricanteController();
+            Fabricante fabricante = new Fabricante();
+            fabricante.setCod(Integer.parseInt(jTextFieldCod.getText()));
+            fabricante.setFabricante(jTextFieldFabricante.getText());
+            fabricante.setObs(jTextFieldObs.getText());
+            if (fabCtrl.updateFabricante(fabricante)) {
+                JOptionPane.showMessageDialog(this, "Fabricante Alterado com sucesso");
+                preencheTabela();
+                limparCampos();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um Fabricante para alterar");
+        }
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
