@@ -198,10 +198,10 @@ public class TipoImpressoraView extends javax.swing.JInternalFrame {
 
         jTableTipoImpressora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "HP", "Garantia pelo Fabricante"}
+                {"1", "Matricial", "Necessidade de Fita"}
             },
             new String [] {
-                "Cód", "Fabricante", "Obs"
+                "Cód", "Tipo", "Obs"
             }
         ));
         jTableTipoImpressora.addMouseListener(new java.awt.event.MouseAdapter() {

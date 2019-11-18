@@ -36,7 +36,7 @@
                       <Component id="jPanelBotoes" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanelDadosFabricantes" min="-2" pref="444" max="-2" attributes="0"/>
+                      <Component id="jPanelDadosFabricantes" min="-2" pref="751" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -75,23 +75,38 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="jLabelId" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextFieldCod" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabelCPF" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldImpressora" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="jTextFieldModelo" min="-2" pref="226" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxCodTipo" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldObs" max="32767" attributes="0"/>
+                          <Component id="jLabelCodTipo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="75" max="32767" attributes="0"/>
+                          <Component id="jComboBoxCodFabricantes" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jTextFieldPreco" min="-2" pref="108" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="240" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                          <Component id="jLabelCodFabricante" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -103,12 +118,16 @@
                       <Component id="jLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldCod" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldImpressora" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldObs" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxCodFabricantes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelCodFabricante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxCodTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelCodTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
@@ -116,14 +135,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTextFieldImpressora">
+        <Component class="javax.swing.JTextField" name="jTextFieldModelo">
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldImpressoraFocusLost"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldModeloFocusLost"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldObs">
+        <Component class="javax.swing.JTextField" name="jTextFieldPreco">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldObsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPrecoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCod">
@@ -133,17 +152,51 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCPF">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fabricante:"/>
+            <Property name="text" type="java.lang.String" value="Modelo:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNome">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Obs"/>
+            <Property name="text" type="java.lang.String" value="Pre&#xe7;o:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelId">
           <Properties>
             <Property name="text" type="java.lang.String" value="C&#xf3;d:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxCodFabricantes">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="Cod Fabricante"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelCodFabricante">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="----"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxCodTipo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="Cod Fabricante"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelCodTipo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="----"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -189,15 +242,21 @@
             <Component class="javax.swing.JTable" name="jTableImpressora">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="1">
+                  <Table columnCount="5" rowCount="1">
                     <Column editable="true" title="C&#xf3;d" type="java.lang.Object">
                       <Data value="1"/>
                     </Column>
-                    <Column editable="true" title="Fabricante" type="java.lang.Object">
+                    <Column editable="true" title="Modelo" type="java.lang.Object">
                       <Data value="HP"/>
                     </Column>
-                    <Column editable="true" title="Obs" type="java.lang.Object">
+                    <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object">
                       <Data value="Garantia pelo Fabricante"/>
+                    </Column>
+                    <Column editable="true" title="C&#xf3;d Tipo" type="java.lang.Object">
+                      <Data value="1"/>
+                    </Column>
+                    <Column editable="true" title="C&#xf3;d Fabricante" type="java.lang.Object">
+                      <Data value="1"/>
                     </Column>
                   </Table>
                 </Property>

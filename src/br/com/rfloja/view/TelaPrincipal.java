@@ -34,6 +34,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCadastro = new javax.swing.JMenu();
         jMenuItemFabricante = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RF Loja");
@@ -81,6 +82,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuCadastro.add(jMenuItem1);
+
+        jMenuItem2.setText("Impressora");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItem2);
 
         jMenuBarMenuPrincipal.add(jMenuCadastro);
 
@@ -135,6 +144,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        ImpressoraView tela = new ImpressoraView();
+        jDesktopPanel.add(tela);
+        tela.setVisible(true);
+        try {
+            tela.setSelected(true);
+            //diz que a janela interna é maximizável   
+            tela.setMaximizable(true);
+            //set o tamanho máximo dela, que depende da janela pai   
+            tela.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -178,6 +202,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarMenuPrincipal;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemFabricante;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,13 +7,11 @@ package br.com.rfloja.view;
  */
 // Import das classes para trabalhar com o preenchimento do endereço a partir do CEP
 import br.com.rfloja.controller.FabricanteController;
-import br.com.rfloja.controller.ImpressoraController;
-import br.com.rfloja.controller.TipoImpressoraController;
+import br.com.rfloja.controller.PcController;
 import br.com.rfloja.model.Fabricante;
-import br.com.rfloja.model.Impressora;
-import br.com.rfloja.model.ImpressoraTableModel;
+import br.com.rfloja.model.PcTableModel;
 import br.com.rfloja.model.TableColumnAdjuster;
-import br.com.rfloja.model.TipoImpressora;
+import br.com.rfloja.model.Pc;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
@@ -26,14 +24,14 @@ import javax.swing.JTextField;
  *
  * @author Rodrigo Fereira Rodrigues
  */
-public class ImpressoraView extends javax.swing.JInternalFrame {
+public class PcView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClientesPFView
      */
-    public ImpressoraView() {
+    public PcView() {
         initComponents();
-        jTableImpressora.setModel(tableModel);
+        jTablePc.setModel(tableModel);
 
         preencheComboBox();
         preencheTabela();
@@ -44,18 +42,18 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
     }
 
     //Instancia minha jTable com base no modelo de Tabela definido no pacote MODEL
-    ImpressoraTableModel tableModel = new ImpressoraTableModel();
+    PcTableModel tableModel = new PcTableModel();
 
     public void preencheTabela() {
 
         tableModel.limpaTabela();
-        Impressora impressora = new Impressora();
-        ImpressoraController fabCtrl = new ImpressoraController();
-        for (Impressora fab : fabCtrl.readImpressora()) {
+        Pc pc = new Pc();
+        PcController fabCtrl = new PcController();
+        for (Pc fab : fabCtrl.readPc()) {
             tableModel.addRow(fab);
         }
-        jTableImpressora.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnAdjuster tca = new TableColumnAdjuster(jTableImpressora);
+        jTablePc.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnAdjuster tca = new TableColumnAdjuster(jTablePc);
         tca.adjustColumns();
 
     }
@@ -73,7 +71,7 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
         String cepvazio = "     -   ";
         String telvazio = "(  )       -     ";
         JTextField[] campos = {jTextFieldModelo, jTextFieldPreco};
-        String[] camposNome = {"Impressora", "Obs"};
+        String[] camposNome = {"Pc", "Obs"};
         for (int i = 0; i < campos.length; i++) {
             if (campos[i].getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Campo " + camposNome[i] + " em branco, verifique");
@@ -120,11 +118,15 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
         jLabelId = new javax.swing.JLabel();
         jComboBoxCodFabricantes = new javax.swing.JComboBox<>();
         jLabelCodFabricante = new javax.swing.JLabel();
-        jComboBoxCodTipo = new javax.swing.JComboBox<>();
-        jLabelCodTipo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldVelocidadeGhz = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldTamanhoRam = new javax.swing.JTextField();
+        jTextFieldTamanhoHd = new javax.swing.JTextField();
         jPanelTabela = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableImpressora = new javax.swing.JTable();
+        jTablePc = new javax.swing.JTable();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonConsulta = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
@@ -173,9 +175,11 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
 
         jLabelCodFabricante.setText("----");
 
-        jComboBoxCodTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cod Fabricante" }));
+        jLabel1.setText("Velocidade:");
 
-        jLabelCodTipo.setText("----");
+        jLabel2.setText("Tamanho RAM:");
+
+        jLabel3.setText("Tamanho HD");
 
         javax.swing.GroupLayout jPanelDadosFabricantesLayout = new javax.swing.GroupLayout(jPanelDadosFabricantes);
         jPanelDadosFabricantes.setLayout(jPanelDadosFabricantesLayout);
@@ -195,20 +199,27 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelNome))
                     .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
-                        .addComponent(jComboBoxCodTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxCodFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabelCodFabricante)
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCodTipo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(jComboBoxCodFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldTamanhoRam, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 240, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldVelocidadeGhz, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDadosFabricantesLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabelCodFabricante)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldTamanhoHd, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 83, Short.MAX_VALUE))
         );
         jPanelDadosFabricantesLayout.setVerticalGroup(
             jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,19 +231,23 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
                     .addComponent(jLabelCPF)
                     .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNome)
-                    .addComponent(jTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldVelocidadeGhz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosFabricantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCodFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCodFabricante)
-                    .addComponent(jComboBoxCodTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCodTipo))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldTamanhoRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTamanhoHd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jPanelTabela.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes Pessoa Física"));
 
-        jTableImpressora.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "HP", "Garantia pelo Fabricante", "1", "1"}
             },
@@ -240,20 +255,20 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
                 "Cód", "Modelo", "Preço", "Cód Tipo", "Cód Fabricante"
             }
         ));
-        jTableImpressora.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTablePc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableImpressoraMouseClicked(evt);
+                jTablePcMouseClicked(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTableImpressoraMouseReleased(evt);
+                jTablePcMouseReleased(evt);
             }
         });
-        jTableImpressora.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTablePc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTableImpressoraKeyReleased(evt);
+                jTablePcKeyReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableImpressora);
+        jScrollPane2.setViewportView(jTablePc);
 
         javax.swing.GroupLayout jPanelTabelaLayout = new javax.swing.GroupLayout(jPanelTabela);
         jPanelTabela.setLayout(jPanelTabelaLayout);
@@ -395,10 +410,10 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelDadosFabricantes, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addGap(62, 62, 62)
                 .addComponent(jPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -409,21 +424,23 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        if (jTableImpressora.getSelectedRow() != -1) {
-            ImpressoraController fabCtrl = new ImpressoraController();
-            Impressora impressora = new Impressora();
-            impressora.setCod(Integer.parseInt(jTextFieldCod.getText()));
-            impressora.setModelo(jTextFieldModelo.getText());
-            impressora.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
-            impressora.setCodTipo(Integer.parseInt(jComboBoxCodTipo.getSelectedItem().toString()));
-            impressora.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
-            if (fabCtrl.deleteImpressora(impressora)) {
-                JOptionPane.showMessageDialog(this, "Impressora deletado com sucesso");
+        if (jTablePc.getSelectedRow() != -1) {
+            PcController fabCtrl = new PcController();
+            Pc pc = new Pc();
+            pc.setCod(Integer.parseInt(jTextFieldCod.getText()));
+            pc.setModelo(jTextFieldModelo.getText());
+            pc.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
+            pc.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
+            pc.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
+            pc.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
+            pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
+            if (fabCtrl.deletePc(pc)) {
+                JOptionPane.showMessageDialog(this, "Pc deletado com sucesso");
                 preencheTabela();
                 limparCampos();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um Impressora para deletar");
+            JOptionPane.showMessageDialog(this, "Selecione um Pc para deletar");
         }
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -446,13 +463,18 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        ImpressoraController fabCtrl = new ImpressoraController();
-        Impressora impressora = new Impressora();
-        impressora.setModelo(jTextFieldModelo.getText());
-        impressora.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
-        impressora.setCodTipo(Integer.parseInt(jComboBoxCodTipo.getSelectedItem().toString()));
-        impressora.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
-        if (fabCtrl.createImpressora(impressora)) {
+        PcController fabCtrl = new PcController();
+        Pc pc = new Pc();
+        pc.setCod(Integer.parseInt(jTextFieldCod.getText()));
+        pc.setModelo(jTextFieldModelo.getText());
+        pc.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
+        pc.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
+        pc.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
+        pc.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
+        pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
+
+        pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
+        if (fabCtrl.createPc(pc)) {
             JOptionPane.showMessageDialog(this, "Salvo com sucesso");
             preencheTabela();
         } else {
@@ -462,21 +484,23 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-        if (jTableImpressora.getSelectedRow() != -1) {
-            ImpressoraController fabCtrl = new ImpressoraController();
-            Impressora impressora = new Impressora();
-            impressora.setCod(Integer.parseInt(jTextFieldCod.getText()));
-            impressora.setModelo(jTextFieldModelo.getText());
-            impressora.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
-            impressora.setCodTipo(Integer.parseInt(jComboBoxCodTipo.getSelectedItem().toString()));
-            impressora.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
-            if (fabCtrl.updateImpressora(impressora)) {
-                JOptionPane.showMessageDialog(this, "Impressora Alterado com sucesso");
+        if (jTablePc.getSelectedRow() != -1) {
+            PcController fabCtrl = new PcController();
+            Pc pc = new Pc();
+            pc.setCod(Integer.parseInt(jTextFieldCod.getText()));
+            pc.setModelo(jTextFieldModelo.getText());
+            pc.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
+            pc.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
+            pc.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
+            pc.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
+            pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
+            if (fabCtrl.updatePc(pc)) {
+                JOptionPane.showMessageDialog(this, "Pc Alterado com sucesso");
                 preencheTabela();
                 limparCampos();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um Impressora para alterar");
+            JOptionPane.showMessageDialog(this, "Selecione um Pc para alterar");
         }
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
@@ -493,38 +517,37 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
         habilitaCampos(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTableImpressoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableImpressoraMouseClicked
+    private void jTablePcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePcMouseClicked
         // TODO add your handling code here:
-        if (jTableImpressora.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 0).toString());
-            jTextFieldModelo.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 1).toString());
-            jTextFieldPreco.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 2).toString());
-            jComboBoxCodTipo.setSelectedItem(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 3).toString());
-            jComboBoxCodFabricantes.setSelectedItem(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 4).toString());
+        if (jTablePc.getSelectedRow() != -1) {
+            jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
+            jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
+            jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
+            jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
         }
-    }//GEN-LAST:event_jTableImpressoraMouseClicked
+    }//GEN-LAST:event_jTablePcMouseClicked
 
-    private void jTableImpressoraMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableImpressoraMouseReleased
+    private void jTablePcMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePcMouseReleased
         // TODO add your handling code here:
-        if (jTableImpressora.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 0).toString());
-            jTextFieldModelo.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 1).toString());
-            jTextFieldPreco.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 2).toString());
-            jComboBoxCodTipo.setSelectedItem(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 3).toString());
-            jComboBoxCodFabricantes.setSelectedItem(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 4).toString());
+        if (jTablePc.getSelectedRow() != -1) {
+            jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
+            jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
+            jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
+           
+            jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
         }
-    }//GEN-LAST:event_jTableImpressoraMouseReleased
+    }//GEN-LAST:event_jTablePcMouseReleased
 
-    private void jTableImpressoraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableImpressoraKeyReleased
+    private void jTablePcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTablePcKeyReleased
         // TODO add your handling code here:
-        if (jTableImpressora.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 0).toString());
-            jTextFieldModelo.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 1).toString());
-            jTextFieldPreco.setText(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 2).toString());
-            jComboBoxCodTipo.setSelectedItem(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 3).toString());
-            jComboBoxCodFabricantes.setSelectedItem(jTableImpressora.getValueAt(jTableImpressora.getSelectedRow(), 4).toString());
+        if (jTablePc.getSelectedRow() != -1) {
+            jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
+            jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
+            jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
+            
+            jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
         }
-    }//GEN-LAST:event_jTableImpressoraKeyReleased
+    }//GEN-LAST:event_jTablePcKeyReleased
 
     private void jTextFieldModeloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldModeloFocusLost
         // TODO add your handling code here:
@@ -554,20 +577,24 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVerificaPendencias;
     private javax.swing.JComboBox<String> jComboBoxCodFabricantes;
-    private javax.swing.JComboBox<String> jComboBoxCodTipo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCPF;
     private javax.swing.JLabel jLabelCodFabricante;
-    private javax.swing.JLabel jLabelCodTipo;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDadosFabricantes;
     private javax.swing.JPanel jPanelTabela;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableImpressora;
+    private javax.swing.JTable jTablePc;
     private javax.swing.JTextField jTextFieldCod;
     private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldPreco;
+    private javax.swing.JTextField jTextFieldTamanhoHd;
+    private javax.swing.JTextField jTextFieldTamanhoRam;
+    private javax.swing.JTextField jTextFieldVelocidadeGhz;
     // End of variables declaration//GEN-END:variables
 
     private void preencheComboBox() {
@@ -579,15 +606,6 @@ public class ImpressoraView extends javax.swing.JInternalFrame {
         }
         DefaultComboBoxModel defaultComboBoxFabricante = new DefaultComboBoxModel(listaCodFabricante.toArray());
         jComboBoxCodFabricantes.setModel(defaultComboBoxFabricante);
-
-        TipoImpressoraController tipoImpressoraCtrl = new TipoImpressoraController();
-        ArrayList<TipoImpressora> listaTipoImpressora = tipoImpressoraCtrl.readTipoImpressora();
-        ArrayList<String> listaCodTipo = new ArrayList<>();
-        for (TipoImpressora listaTipo : listaTipoImpressora) {
-            listaCodTipo.add("" + listaTipo.getCod());
-        }
-        DefaultComboBoxModel defaultComboBoxModelTipo = new DefaultComboBoxModel(listaCodTipo.toArray());
-        jComboBoxCodTipo.setModel(defaultComboBoxModelTipo);
 
     }
 }
