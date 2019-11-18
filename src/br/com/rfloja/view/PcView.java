@@ -249,10 +249,10 @@ public class PcView extends javax.swing.JInternalFrame {
 
         jTablePc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "HP", "Garantia pelo Fabricante", "1", "1"}
+                {"1", "HP", "2,3", "8", "500", "2000", "1"}
             },
             new String [] {
-                "Cód", "Modelo", "Preço", "Cód Tipo", "Cód Fabricante"
+                "Cód", "Modelo", "Velocidade Ghz", "Tamanho Ram", "Tamanho HD", "Preço", "Cód Fabricante"
             }
         ));
         jTablePc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -465,14 +465,11 @@ public class PcView extends javax.swing.JInternalFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         PcController fabCtrl = new PcController();
         Pc pc = new Pc();
-        pc.setCod(Integer.parseInt(jTextFieldCod.getText()));
         pc.setModelo(jTextFieldModelo.getText());
         pc.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
         pc.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
         pc.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
         pc.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
-        pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
-
         pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
         if (fabCtrl.createPc(pc)) {
             JOptionPane.showMessageDialog(this, "Salvo com sucesso");
@@ -522,6 +519,9 @@ public class PcView extends javax.swing.JInternalFrame {
         if (jTablePc.getSelectedRow() != -1) {
             jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
             jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
+            jTextFieldVelocidadeGhz.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
+            jTextFieldTamanhoRam.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 3).toString());
+            jTextFieldTamanhoHd.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
             jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
             jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
         }
@@ -532,8 +532,10 @@ public class PcView extends javax.swing.JInternalFrame {
         if (jTablePc.getSelectedRow() != -1) {
             jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
             jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
+            jTextFieldVelocidadeGhz.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
+            jTextFieldTamanhoRam.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 3).toString());
+            jTextFieldTamanhoHd.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
             jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
-           
             jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
         }
     }//GEN-LAST:event_jTablePcMouseReleased
@@ -543,8 +545,10 @@ public class PcView extends javax.swing.JInternalFrame {
         if (jTablePc.getSelectedRow() != -1) {
             jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
             jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
+            jTextFieldVelocidadeGhz.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
+            jTextFieldTamanhoRam.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 3).toString());
+            jTextFieldTamanhoHd.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
             jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
-            
             jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
         }
     }//GEN-LAST:event_jTablePcKeyReleased

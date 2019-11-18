@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 public class PcTableModel extends AbstractTableModel {
 
     private ArrayList<Pc> dados = new ArrayList<>();
-    private String[] colunas = {"Cod", "Modelo", "Preço", "Cód Tipo", "Cód Fabricante"};
+    private String[] colunas = {"Cod", "Modelo", "Velocidade Ghz", "Tamanho Ram", "Tamanho HD","Preço" ,"Cód Fabricante"};
 
     @Override
     public String getColumnName(int col) {

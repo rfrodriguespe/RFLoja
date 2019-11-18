@@ -257,18 +257,24 @@
             <Component class="javax.swing.JTable" name="jTablePc">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="1">
+                  <Table columnCount="7" rowCount="1">
                     <Column editable="true" title="C&#xf3;d" type="java.lang.Object">
                       <Data value="1"/>
                     </Column>
                     <Column editable="true" title="Modelo" type="java.lang.Object">
                       <Data value="HP"/>
                     </Column>
-                    <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object">
-                      <Data value="Garantia pelo Fabricante"/>
+                    <Column editable="true" title="Velocidade Ghz" type="java.lang.Object">
+                      <Data value="2,3"/>
                     </Column>
-                    <Column editable="true" title="C&#xf3;d Tipo" type="java.lang.Object">
-                      <Data value="1"/>
+                    <Column editable="true" title="Tamanho Ram" type="java.lang.Object">
+                      <Data value="8"/>
+                    </Column>
+                    <Column editable="true" title="Tamanho HD" type="java.lang.Object">
+                      <Data value="500"/>
+                    </Column>
+                    <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object">
+                      <Data value="2000"/>
                     </Column>
                     <Column editable="true" title="C&#xf3;d Fabricante" type="java.lang.Object">
                       <Data value="1"/>
