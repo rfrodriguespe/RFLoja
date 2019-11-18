@@ -7,11 +7,11 @@ package br.com.rfloja.view;
  */
 // Import das classes para trabalhar com o preenchimento do endereço a partir do CEP
 import br.com.rfloja.controller.FabricanteController;
-import br.com.rfloja.controller.PcController;
+import br.com.rfloja.controller.NotebookController;
 import br.com.rfloja.model.Fabricante;
-import br.com.rfloja.model.PcTableModel;
+import br.com.rfloja.model.NotebookTableModel;
 import br.com.rfloja.model.TableColumnAdjuster;
-import br.com.rfloja.model.Pc;
+import br.com.rfloja.model.Notebook;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
@@ -24,14 +24,14 @@ import javax.swing.JTextField;
  *
  * @author Rodrigo Fereira Rodrigues
  */
-public class PcView extends javax.swing.JInternalFrame {
+public class NotebookView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ClientesPFView
      */
-    public PcView() {
+    public NotebookView() {
         initComponents();
-        jTablePc.setModel(tableModel);
+        jTableNotebook.setModel(tableModel);
 
         preencheComboBox();
         preencheTabela();
@@ -42,18 +42,18 @@ public class PcView extends javax.swing.JInternalFrame {
     }
 
     //Instancia minha jTable com base no modelo de Tabela definido no pacote MODEL
-    PcTableModel tableModel = new PcTableModel();
+    NotebookTableModel tableModel = new NotebookTableModel();
 
     public void preencheTabela() {
 
         tableModel.limpaTabela();
-        Pc pc = new Pc();
-        PcController fabCtrl = new PcController();
-        for (Pc fab : fabCtrl.readPc()) {
+        Notebook notebook = new Notebook();
+        NotebookController fabCtrl = new NotebookController();
+        for (Notebook fab : fabCtrl.readNotebook()) {
             tableModel.addRow(fab);
         }
-        jTablePc.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        TableColumnAdjuster tca = new TableColumnAdjuster(jTablePc);
+        jTableNotebook.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnAdjuster tca = new TableColumnAdjuster(jTableNotebook);
         tca.adjustColumns();
 
     }
@@ -71,7 +71,7 @@ public class PcView extends javax.swing.JInternalFrame {
         String cepvazio = "     -   ";
         String telvazio = "(  )       -     ";
         JTextField[] campos = {jTextFieldModelo, jTextFieldPreco};
-        String[] camposNome = {"Pc", "Obs"};
+        String[] camposNome = {"Notebook", "Obs"};
         for (int i = 0; i < campos.length; i++) {
             if (campos[i].getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Campo " + camposNome[i] + " em branco, verifique");
@@ -126,7 +126,7 @@ public class PcView extends javax.swing.JInternalFrame {
         jTextFieldTamanhoHd = new javax.swing.JTextField();
         jPanelTabela = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTablePc = new javax.swing.JTable();
+        jTableNotebook = new javax.swing.JTable();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonConsulta = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
@@ -247,7 +247,7 @@ public class PcView extends javax.swing.JInternalFrame {
 
         jPanelTabela.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes Pessoa Física"));
 
-        jTablePc.setModel(new javax.swing.table.DefaultTableModel(
+        jTableNotebook.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "HP", "2,3", "8", "500", "2000", "1"}
             },
@@ -255,20 +255,20 @@ public class PcView extends javax.swing.JInternalFrame {
                 "Cód", "Modelo", "Velocidade Ghz", "Tamanho Ram", "Tamanho HD", "Preço", "Cód Fabricante"
             }
         ));
-        jTablePc.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableNotebook.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTablePcMouseClicked(evt);
+                jTableNotebookMouseClicked(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTablePcMouseReleased(evt);
+                jTableNotebookMouseReleased(evt);
             }
         });
-        jTablePc.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTableNotebook.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTablePcKeyReleased(evt);
+                jTableNotebookKeyReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(jTablePc);
+        jScrollPane2.setViewportView(jTableNotebook);
 
         javax.swing.GroupLayout jPanelTabelaLayout = new javax.swing.GroupLayout(jPanelTabela);
         jPanelTabela.setLayout(jPanelTabelaLayout);
@@ -424,23 +424,23 @@ public class PcView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        if (jTablePc.getSelectedRow() != -1) {
-            PcController fabCtrl = new PcController();
-            Pc pc = new Pc();
-            pc.setCod(Integer.parseInt(jTextFieldCod.getText()));
-            pc.setModelo(jTextFieldModelo.getText());
-            pc.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
-            pc.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
-            pc.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
-            pc.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
-            pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
-            if (fabCtrl.deletePc(pc)) {
-                JOptionPane.showMessageDialog(this, "Pc deletado com sucesso");
+        if (jTableNotebook.getSelectedRow() != -1) {
+            NotebookController fabCtrl = new NotebookController();
+            Notebook notebook = new Notebook();
+            notebook.setCod(Integer.parseInt(jTextFieldCod.getText()));
+            notebook.setModelo(jTextFieldModelo.getText());
+            notebook.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
+            notebook.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
+            notebook.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
+            notebook.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
+            notebook.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
+            if (fabCtrl.deleteNotebook(notebook)) {
+                JOptionPane.showMessageDialog(this, "Notebook deletado com sucesso");
                 preencheTabela();
                 limparCampos();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um Pc para deletar");
+            JOptionPane.showMessageDialog(this, "Selecione um Notebook para deletar");
         }
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
@@ -463,15 +463,15 @@ public class PcView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        PcController fabCtrl = new PcController();
-        Pc pc = new Pc();
-        pc.setModelo(jTextFieldModelo.getText());
-        pc.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
-        pc.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
-        pc.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
-        pc.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
-        pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
-        if (fabCtrl.createPc(pc)) {
+        NotebookController fabCtrl = new NotebookController();
+        Notebook notebook = new Notebook();
+        notebook.setModelo(jTextFieldModelo.getText());
+        notebook.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
+        notebook.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
+        notebook.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
+        notebook.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
+        notebook.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
+        if (fabCtrl.createNotebook(notebook)) {
             JOptionPane.showMessageDialog(this, "Salvo com sucesso");
             preencheTabela();
         } else {
@@ -481,23 +481,23 @@ public class PcView extends javax.swing.JInternalFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-        if (jTablePc.getSelectedRow() != -1) {
-            PcController fabCtrl = new PcController();
-            Pc pc = new Pc();
-            pc.setCod(Integer.parseInt(jTextFieldCod.getText()));
-            pc.setModelo(jTextFieldModelo.getText());
-            pc.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
-            pc.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
-            pc.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
-            pc.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
-            pc.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
-            if (fabCtrl.updatePc(pc)) {
-                JOptionPane.showMessageDialog(this, "Pc Alterado com sucesso");
+        if (jTableNotebook.getSelectedRow() != -1) {
+            NotebookController fabCtrl = new NotebookController();
+            Notebook notebook = new Notebook();
+            notebook.setCod(Integer.parseInt(jTextFieldCod.getText()));
+            notebook.setModelo(jTextFieldModelo.getText());
+            notebook.setVelocidadeGhz(Float.parseFloat(jTextFieldVelocidadeGhz.getText()));
+            notebook.setTamanhoRAM(Integer.parseInt(jTextFieldTamanhoRam.getText()));
+            notebook.setTamanhoHD(Integer.parseInt(jTextFieldTamanhoHd.getText()));
+            notebook.setPreco(Integer.parseInt(jTextFieldPreco.getText()));
+            notebook.setCodFabricante(Integer.parseInt(jComboBoxCodFabricantes.getSelectedItem().toString()));
+            if (fabCtrl.updateNotebook(notebook)) {
+                JOptionPane.showMessageDialog(this, "Notebook Alterado com sucesso");
                 preencheTabela();
                 limparCampos();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um Pc para alterar");
+            JOptionPane.showMessageDialog(this, "Selecione um Notebook para alterar");
         }
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
@@ -514,44 +514,44 @@ public class PcView extends javax.swing.JInternalFrame {
         habilitaCampos(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTablePcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePcMouseClicked
+    private void jTableNotebookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNotebookMouseClicked
         // TODO add your handling code here:
-        if (jTablePc.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
-            jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
-            jTextFieldVelocidadeGhz.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
-            jTextFieldTamanhoRam.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 3).toString());
-            jTextFieldTamanhoHd.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
-            jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 5).toString());
-            jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 6).toString());
+        if (jTableNotebook.getSelectedRow() != -1) {
+            jTextFieldCod.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 0).toString());
+            jTextFieldModelo.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 1).toString());
+            jTextFieldVelocidadeGhz.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 2).toString());
+            jTextFieldTamanhoRam.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 3).toString());
+            jTextFieldTamanhoHd.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 4).toString());
+            jTextFieldPreco.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 5).toString());
+            jComboBoxCodFabricantes.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 6).toString());
         }
-    }//GEN-LAST:event_jTablePcMouseClicked
+    }//GEN-LAST:event_jTableNotebookMouseClicked
 
-    private void jTablePcMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePcMouseReleased
+    private void jTableNotebookMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNotebookMouseReleased
         // TODO add your handling code here:
-        if (jTablePc.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
-            jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
-            jTextFieldVelocidadeGhz.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
-            jTextFieldTamanhoRam.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 3).toString());
-            jTextFieldTamanhoHd.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
-            jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 5).toString());
-            jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 6).toString());
+        if (jTableNotebook.getSelectedRow() != -1) {
+            jTextFieldCod.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 0).toString());
+            jTextFieldModelo.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 1).toString());
+            jTextFieldVelocidadeGhz.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 2).toString());
+            jTextFieldTamanhoRam.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 3).toString());
+            jTextFieldTamanhoHd.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 4).toString());
+            jTextFieldPreco.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 5).toString());
+            jComboBoxCodFabricantes.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 6).toString());
         }
-    }//GEN-LAST:event_jTablePcMouseReleased
+    }//GEN-LAST:event_jTableNotebookMouseReleased
 
-    private void jTablePcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTablePcKeyReleased
+    private void jTableNotebookKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableNotebookKeyReleased
         // TODO add your handling code here:
-        if (jTablePc.getSelectedRow() != -1) {
-            jTextFieldCod.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 0).toString());
-            jTextFieldModelo.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 1).toString());
-            jTextFieldVelocidadeGhz.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 2).toString());
-            jTextFieldTamanhoRam.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 3).toString());
-            jTextFieldTamanhoHd.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 4).toString());
-            jTextFieldPreco.setText(jTablePc.getValueAt(jTablePc.getSelectedRow(), 5).toString());
-            jComboBoxCodFabricantes.setSelectedItem(jTablePc.getValueAt(jTablePc.getSelectedRow(), 6).toString());
+        if (jTableNotebook.getSelectedRow() != -1) {
+            jTextFieldCod.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 0).toString());
+            jTextFieldModelo.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 1).toString());
+            jTextFieldVelocidadeGhz.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 2).toString());
+            jTextFieldTamanhoRam.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 3).toString());
+            jTextFieldTamanhoHd.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 4).toString());
+            jTextFieldPreco.setText(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 5).toString());
+            jComboBoxCodFabricantes.setSelectedItem(jTableNotebook.getValueAt(jTableNotebook.getSelectedRow(), 6).toString());
         }
-    }//GEN-LAST:event_jTablePcKeyReleased
+    }//GEN-LAST:event_jTableNotebookKeyReleased
 
     private void jTextFieldModeloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldModeloFocusLost
         // TODO add your handling code here:
@@ -592,7 +592,7 @@ public class PcView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelDadosFabricantes;
     private javax.swing.JPanel jPanelTabela;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTablePc;
+    private javax.swing.JTable jTableNotebook;
     private javax.swing.JTextField jTextFieldCod;
     private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldPreco;
