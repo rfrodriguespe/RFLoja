@@ -85,35 +85,29 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextFieldModelo" min="-2" pref="226" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jComboBoxCodFabricantes" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Component id="jLabelCodFabricante" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldTamanhoRam" min="-2" pref="74" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldPreco" min="-2" pref="108" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextFieldVelocidadeGhz" min="-2" pref="68" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextFieldTamanhoRam" min="-2" pref="74" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextFieldTamanhoHd" min="-2" pref="74" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextFieldPreco" min="-2" pref="108" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="jComboBoxCodFabricantes" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabelCodFabricante" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="83" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="104" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -126,19 +120,21 @@
                       <Component id="jTextFieldCod" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldModelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldVelocidadeGhz" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jComboBoxCodFabricantes" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelCodFabricante" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldTamanhoRam" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldTamanhoHd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Component id="jLabelNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldPreco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxCodFabricantes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelCodFabricante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
